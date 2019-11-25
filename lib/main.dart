@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'main2.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -143,7 +145,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Center(
                   child: GestureDetector(
                     onTap: () {
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MyHomePage2()),
+                      );
                     },
                     child: Column(
                       children: <Widget>[
@@ -167,8 +172,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             Container(
                               child : Image.asset(
                                 images[index],
-                                width: 100,
-                                height: 100,
+                                width: 130,
+                                height: 130,
                                 alignment: Alignment(0.0, 1.0),
                               ),
                             ),
