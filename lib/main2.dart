@@ -1,37 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'main.dart';
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
+//void main() => runApp(MyApp());
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+
+class MyHomePage2 extends StatefulWidget {
+  MyHomePage2({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePage2State createState() => _MyHomePage2State();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePage2State extends State<MyHomePage2> {
 
   final List<int> numbers = [1, 2, 3,4];
   final List<String> title = ['삐모', '뿡자', '삐비', '그레이푸', 'hi'];
   final List<String> subtitle = ['식사영어를 배우자!', '항공영어를 배우자!', '길묻기영어를 배우자!', '물건 살 때 영어를 배우자!', 'hi'];
   final List<String> images = ['assets/penguin.png','assets/tree.png','assets/bee.png','assets/grapes.png'];
+  final List<String> sentence = ['커피 한 잔 주세요', '영수증 주세요', '앉을 자리가 있나요?', '식사 예약 했습니다'];
 
   List<Card> _buildGridCards(int count) {
     List<Card> cards = List.generate(
@@ -84,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   //Container(height: 60.0,),
                   Container(
                     padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 10.0),
-                    child: Text('단원들',style: TextStyle(
+                    child: Text('문장들',style: TextStyle(
                       fontSize: 40.0,
                       //fontWeight: FontWeight.w700,
                       letterSpacing: 2.0,
@@ -95,13 +85,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 60.0,
                     width: MediaQuery.of(context).size.width / 1.1,
                     decoration: BoxDecoration(
-                      color: Color(0xfff9dcea),
+                      color: Color(0xffDCE7F9),
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     ),
                     //width: ,
                     child: Center(
                       child: Text(
-                        '여러 여행 상황 속에서 쓰이는 영어를 배워봐요!',
+                        '구체적인 문장들을 배워봐요!',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 18,
@@ -112,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                     padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 10.0),
                     child: Text(
-                      '척척박사 친구들',
+                      '보아라!',
                       style: TextStyle(
                         fontSize: 20,
                       ),
@@ -133,62 +123,72 @@ class _MyHomePageState extends State<MyHomePage> {
       body: new Column(
         children: <Widget>[
           new Expanded(
-            child: GridView.count(
-              // Create a grid with 2 columns. If you change the scrollDirection to
-              // horizontal, this would produce 2 rows.
-              crossAxisCount: 2,
-              // Generate 100 Widgets that display their index in the List
-              children: List.generate(4, (index) {
-                //return _buildCard(index);
-                return Center(
-                  child: GestureDetector(
-                    onTap: () {
-
-                    },
-                    child: Column(
-                      children: <Widget>[
-                        Stack(
-                          children: <Widget>[
-                            Container(
-                              width: 130,
-                              height: 130,
-                              decoration: new BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color(0xFFEAE9E9),
-                                boxShadow: [
-                                  new BoxShadow(
-                                    color: Colors.grey[400],
-                                    offset: new Offset(0.0, 5.0),
-                                    blurRadius: 5.0,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              child : Image.asset(
-                                images[index],
-                                width: 100,
-                                height: 100,
-                                alignment: Alignment(0.0, 1.0),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          title[index],
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16.0
-                          ),
-                        ),
-                        Text(
-                          subtitle[index],
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
+            child: ListView.builder(
+             padding: EdgeInsets.all(8),
+              itemCount: numbers.length,
+              itemBuilder : (BuildContext context, int index){
+               return GestureDetector(
+                 onTap: (){
+                   Navigator.push(
+                     context,
+                     MaterialPageRoute(builder: (context) => MyHomePage()),
+                   );
+                 },
+                 child: ListTile(
+                   //height: 80,
+                   //color: Colors.yellow,
+                   title: Container(
+                     height: 70,
+                     child:Row(
+                       children: <Widget>[
+                         Center(
+                           child: Stack(
+                             children: <Widget>[
+                               Container(
+                                 width: 55,
+                                 height: 55,
+                                 decoration: new BoxDecoration(
+                                   shape: BoxShape.circle,
+                                   color: Color(0xFFFFFFFF),
+                                   boxShadow: [
+                                     new BoxShadow(
+                                       color: Colors.grey[400],
+                                       offset: new Offset(0.0, 5.0),
+                                       blurRadius: 5.0,
+                                     ),
+                                   ],
+                                 ),
+                               ),
+                               Container(
+                                 child : Image.asset(
+                                   images[index],
+                                   width: 55,
+                                   height: 55,
+                                   alignment: Alignment(0.0, 0.0),
+                                 ),
+                               ),
+                             ],
+                           ),
+                         ),
+                         Container(
+                           padding: EdgeInsets.all(10.0),
+                           child: Text(
+                             sentence[index],
+                             style: TextStyle(
+                               fontSize: 17,
+                             ),
+                           ),
+                         ),
+                       ],
+                     ),
+                   ),
+                   trailing: Icon(
+                     Icons.panorama_fish_eye,
+                     size: 40,
+                   )
+                 ),
+               );
+              }
             ),
           ),
         ],
